@@ -9,13 +9,10 @@ import pygame
 # Define the size of the game window
 WIDTH = 1200
 HEIGHT = 800
-
 # make the game window object
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
-
 # name the game window
 pygame.display.set_caption("Brick Breaker Inc")
-
 # frame rate of game
 FPS = 60
 
