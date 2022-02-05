@@ -4,7 +4,9 @@ class Ball:
     ############
     # class vars w/ constant start values
     ###########
-    diameter = 10
+    width = 10
+    height = 10
+    #radius = 5
     speed = 3
 
     #constructor function
@@ -12,9 +14,8 @@ class Ball:
         self.x = _x
         self.y = _y
 
-    #render function\
+    #render function
     def render(self, _window):
-        #ballCircle = pygame.circle(self.x, self.y, self.width, self.height)
+        Ball = pygame.Rect(self.x, self.y, self.width, self.height)
         #drawing a rectangle
-        #pygame.draw.circle(_window, (100,0,100), playerRect)
-        return
+        pygame.draw.rect(_window, (255,0,0), Ball)
