@@ -3,6 +3,8 @@
 ###########
 import pygame
 
+from Player import Player
+
 ########################################
 # Defining global variables and set-up #
 ########################################
@@ -16,6 +18,12 @@ pygame.display.set_caption("Brick Breaker Inc")
 # frame rate of game
 FPS = 60
 
+# player vars
+player = Player(100, 200)
+
+########################################
+# MAIN
+########################################
 # main game function
 def main():
     # make a clock object that will be used
@@ -29,7 +37,6 @@ def main():
     while running:
 	   # this makes it so this function can run at most FPS times/sec
         clock.tick(FPS)
-
  
         # for all the game events
         for event in pygame.event.get():
@@ -39,6 +46,9 @@ def main():
 
         # This fills the game window to be the given RGB color
         WINDOW.fill((51,51,51))
+
+        #render Player
+        player.render(WINDOW)
 
         # put code here that should be run every frame in the game             
         pygame.display.update()
