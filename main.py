@@ -22,7 +22,7 @@ pygame.display.set_caption("Brick Breaker Inc")
 FPS = 60
 
 # player vars
-player = Player(100, 200)
+player = Player(WIDTH/2, HEIGHT-40)
 
 # Ball vars
 ball1 = Ball(200,200)
