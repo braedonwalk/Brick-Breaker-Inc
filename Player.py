@@ -25,4 +25,12 @@ class Player:
         # drawing rectangle
         pygame.draw.rect(_window, (255,0,0), playerRect)
 
-   
+    def move(self):
+        # handle player movement from key presses
+        # this gets a list of booleans showing which keys are currently pressed
+        keysPressed = pygame.key.get_pressed()
+        
+        if keysPressed[pygame.K_a] == True: # if the 'w' key is pressed
+            self.x -= self.speed
+        elif keysPressed[pygame.K_d] == True:   # if the 's' key is pressed
+            self.x += self.speed

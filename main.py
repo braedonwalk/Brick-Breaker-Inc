@@ -2,11 +2,8 @@
 # Imports #
 ###########
 import pygame
-#from Player import Player
-#from Brick import Brick
-from Ball import Ball
-
 from Player import Player
+from Ball import Ball
 
 ########################################
 # Defining global variables and set-up #
@@ -22,7 +19,9 @@ pygame.display.set_caption("Brick Breaker Inc")
 FPS = 60
 
 # player vars
-player = Player(WIDTH/2, HEIGHT-40)
+playerStartX = WIDTH/2
+playerStartY = HEIGHT-40
+player = Player(playerStartX, playerStartY)
 
 # Ball vars
 ball1 = Ball(WIDTH/2,HEIGHT/2)
@@ -49,8 +48,12 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
 
+        
+
         # This fills the game window to be the given RGB color
         WINDOW.fill((51,51,51))
+        
+        player.move()
 
         #render Player
         player.render(WINDOW)
@@ -64,3 +67,4 @@ def main():
 
 
 main()
+print(player.x)
