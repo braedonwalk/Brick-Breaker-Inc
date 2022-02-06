@@ -25,7 +25,7 @@ FPS = 60
 player = Player(WIDTH/2, HEIGHT-40)
 
 # Ball vars
-ball1 = Ball(200,200)
+ball1 = Ball(WIDTH/2,HEIGHT/2)
 
 #################
 # MAIN FUNCTION #
