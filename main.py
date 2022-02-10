@@ -52,9 +52,13 @@ def updateBounds():
 
 def crash():
     #check conditions
-    if rightBoundBall >= WIDTH or leftBoundBall <= 0:
+    if rightBoundBall >= WIDTH or leftBoundBall <= 0:   #if the ball bounces off right or left wall
         print("yee haw")
-        ball1.speedX = -ball1.speedX
+        ball1.speedX = -ball1.speedX                    #flip the direction of the ball
+
+    if topBoundBall >= HEIGHT or bottomBoundBall <= 0:  #if the ball bounces off right or left wall
+        print("haw yee")
+        ball1.speedY = -ball1.speedY                    #flip the direction of the ball
 
 #################
 # MAIN FUNCTION #
@@ -91,6 +95,7 @@ def main():
         
         #make ball move
         ball1.x += ball1.speedX
+        ball1.y -= ball1.speedY
 
         updateBounds()      #update all the bounds for the ball
         crash()             #collision detection for the ball
