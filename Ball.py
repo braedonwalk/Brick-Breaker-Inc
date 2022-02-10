@@ -5,7 +5,8 @@ class Ball:
     # class vars w/ constant start values
     ###########
     radius = 7
-    speed = 3
+    speedX = 3
+    speedY = 3
 
     #constructor function
     def __init__(self, _x, _y):

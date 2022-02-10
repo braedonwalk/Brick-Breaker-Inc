@@ -24,22 +24,37 @@ playerStartY = HEIGHT-40
 player = Player(playerStartX, playerStartY)
 
 # Ball vars
-ballX = WIDTH/2
-ballY = HEIGHT/2
-ball1 = Ball(ballX,ballY)          #define start position of ball
+ballStartX = WIDTH/2
+ballStartY = HEIGHT/2
+ball1 = Ball(ballStartX, ballStartY)          #define start position of ball
 
 #ball bounds
 rightBoundBall = ball1.x + ball1.radius
 leftBoundBall = ball1.x - ball1.radius
 bottomBoundBall = ball1.y + ball1.radius
-topBoundBall = ball1.y
+topBoundBall = ball1.y - ball1.radius
 
 
 ###################
 # OTHER FUNCTIONS #
 ###################
+def updateBounds():
+    global rightBoundBall
+    global leftBoundBall
+    global bottomBoundBall
+    global topBoundBall
+
+    #ball bounds
+    rightBoundBall = ball1.x + ball1.radius
+    leftBoundBall = ball1.x - ball1.radius
+    bottomBoundBall = ball1.y + ball1.radius
+    topBoundBall = ball1.y - ball1.radius
+
 def crash():
-    global start
+    #check conditions
+    if rightBoundBall >= WIDTH or leftBoundBall <= 0:
+        print("yee haw")
+        ball1.speedX = -ball1.speedX
 
 #################
 # MAIN FUNCTION #
@@ -74,13 +89,11 @@ def main():
         player.render(WINDOW)
         ball1.render(WINDOW)
         
-        # ball1.x += ball1.speed
-        # ball1.y -= ball1.speed
-        # print(ball1.y)
-        # if topBoundBall <= 0:
-        #     print("yes'm")
+        #make ball move
+        ball1.x += ball1.speedX
 
-        
+        updateBounds()      #update all the bounds for the ball
+        crash()             #collision detection for the ball
             
 
         # put code here that should be run every frame in the game             
