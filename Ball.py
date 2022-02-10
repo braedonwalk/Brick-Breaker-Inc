@@ -11,6 +11,12 @@ class Ball:
     def __init__(self, _x, _y):
         self.x = _x
         self.y = _y
+        #ball bounds
+        rightBound = self.x + self.radius
+        leftBound = self.x - self.radius
+        bottomBound = self.y + self.radius
+        topBound = self.y - self.radius
+
 
     #render function
     def render(self, _window):
@@ -20,3 +26,5 @@ class Ball:
 
         #drawing a cirlce
         pygame.draw.circle(_window, (255,255,255), (_x, _y), self.radius)
+
+    

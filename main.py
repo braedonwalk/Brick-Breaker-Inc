@@ -26,6 +26,14 @@ player = Player(playerStartX, playerStartY)
 # Ball vars
 ball1 = Ball(WIDTH/2,HEIGHT/2)
 
+###################
+# OTHER FUNCTIONS #
+###################
+#collision
+def collide(self):
+    if self.rightBound >= WIDTH:
+        return
+
 #################
 # MAIN FUNCTION #
 #################
@@ -58,6 +66,9 @@ def main():
         #render Player
         player.render(WINDOW)
         ball1.render(WINDOW)
+
+        
+            
 
         # put code here that should be run every frame in the game             
         pygame.display.update()
