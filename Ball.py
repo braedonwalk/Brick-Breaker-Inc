@@ -10,13 +10,7 @@ class Ball:
     #constructor function
     def __init__(self, _x, _y):
         self.x = _x
-        self.y = _y
-        #ball bounds
-        rightBound = self.x + self.radius
-        leftBound = self.x - self.radius
-        bottomBound = self.y + self.radius
-        topBound = self.y - self.radius
-
+        self.y = _y    
 
     #render function
     def render(self, _window):

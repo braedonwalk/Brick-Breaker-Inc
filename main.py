@@ -24,15 +24,22 @@ playerStartY = HEIGHT-40
 player = Player(playerStartX, playerStartY)
 
 # Ball vars
-ball1 = Ball(WIDTH/2,HEIGHT/2)
+ballX = WIDTH/2
+ballY = HEIGHT/2
+ball1 = Ball(ballX,ballY)          #define start position of ball
+
+#ball bounds
+rightBoundBall = ball1.x + ball1.radius
+leftBoundBall = ball1.x - ball1.radius
+bottomBoundBall = ball1.y + ball1.radius
+topBoundBall = ball1.y
+
 
 ###################
 # OTHER FUNCTIONS #
 ###################
-#collision
-def collide(self):
-    if self.rightBound >= WIDTH:
-        return
+def crash():
+    global start
 
 #################
 # MAIN FUNCTION #
@@ -66,6 +73,12 @@ def main():
         #render Player
         player.render(WINDOW)
         ball1.render(WINDOW)
+        
+        # ball1.x += ball1.speed
+        # ball1.y -= ball1.speed
+        # print(ball1.y)
+        # if topBoundBall <= 0:
+        #     print("yes'm")
 
         
             
