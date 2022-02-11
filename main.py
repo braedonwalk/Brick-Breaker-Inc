@@ -29,6 +29,9 @@ ballStartX = WIDTH/2
 ballStartY = HEIGHT/2
 ball1 = Ball(ballStartX, ballStartY)          #define start position of ball
 
+#Brick vars
+brick = Brick(200, 400, 1)  #(width, height, health)
+
 #ball bounds
 rightBoundBall = ball1.x + ball1.radius
 leftBoundBall = ball1.x - ball1.radius
@@ -59,21 +62,20 @@ def updateBounds():
     global topBoundBall
 
     #ball bounds
-    rightBoundBall = ball1.x + ball1.radius
-    leftBoundBall = ball1.x - ball1.radius
-    bottomBoundBall = ball1.y + ball1.radius
-    topBoundBall = ball1.y - ball1.radius
-
+    rightBoundBall = ball1.x
+    leftBoundBall = ball1.x - 10
+    bottomBoundBall = ball1.y
+    topBoundBall = ball1.y - 10
 
 
 def crash():
     #check conditions
     if rightBoundBall >= WIDTH or leftBoundBall <= 0:   #if the ball bounces off right or left wall
-        print("yee haw")
+        #print("yee haw")
         ball1.speedX = -ball1.speedX                    #flip the direction of the ball
 
     if bottomBoundBall >= HEIGHT or topBoundBall <= 0:  #if the ball bounces off top or bottom wall
-        print("haw yee")
+        #print("haw yee")
         ball1.speedY = -ball1.speedY                    #flip the direction of the ball
 
 
@@ -82,6 +84,8 @@ def crash():
 #################
 # main game function
 def main():
+    # this gets a list of booleans showing which keys are currently pressed
+    keysPressed = pygame.key.get_pressed()
     # make a clock object that will be used
     # to make the game run at a consistent framerate
     clock = pygame.time.Clock()
@@ -101,8 +105,14 @@ def main():
         # This fills the game window to be the given RGB color
         WINDOW.fill((51,51,51))
         
+        
         player.move()
 
+        #make ball move
+        ball1.move()
+        ball1.playerCollision(player)
+
+       
         #render Player
         player.render(WINDOW)
         #Render ball
@@ -110,9 +120,7 @@ def main():
         #RENDER TEST BRICK
         # brick.render(WINDOW)
 
-        #make ball move
-        ball1.x += ball1.speedX
-        ball1.y -= ball1.speedY
+        
 
         updateBounds()      #update all the bounds for the ball
         crash()             #collision detection for the ball

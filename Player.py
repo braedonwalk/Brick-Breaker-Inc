@@ -15,15 +15,17 @@ class Player:
     def __init__(self, _x, _y) -> None:
         self.x = _x
         self.y = _y
+        self.playerRect = pygame.Rect(_x, _y, self.width, self.height)
+
 
     def render(self, _window):
         _x = self.x - self.width/2
         _y = self.y - self.height/2
 
-        playerRect = pygame.Rect(_x, _y, self.width, self.height)
+        self.playerRect = pygame.Rect(_x, _y, self.width, self.height)
 
         # drawing rectangle
-        pygame.draw.rect(_window, (255,0,0), playerRect)
+        pygame.draw.rect(_window, (255,0,0), self.playerRect)
 
     def move(self):
         # handle player movement from key presses
