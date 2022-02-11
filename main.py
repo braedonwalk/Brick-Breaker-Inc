@@ -28,7 +28,7 @@ player = Player(playerStartX, playerStartY)
 ball1 = Ball(WIDTH/2,HEIGHT/2)
 
 #Brick vars
-brick = Brick(200, 400)
+brick = Brick(200, 400, 1)
 
 #################
 # MAIN FUNCTION #
@@ -59,7 +59,7 @@ def main():
         #render Player
         player.render(WINDOW)
         ball1.render(WINDOW)
-        # brick.render(brick.brickSurface)
+        brick.render(WINDOW)
 
 
 
