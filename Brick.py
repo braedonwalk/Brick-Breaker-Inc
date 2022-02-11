@@ -16,8 +16,8 @@ class Brick:
 
     #render function
     def render(self, _window):
-        _x = self.x - self.width/2
-        _y = self.y - self.height/2
+        _x = self.x
+        _y = self.y
 
         #drawing a rectangle
         pygame.draw.rect(_window, (255,0,0), pygame.Rect(_x, _y, self.width, self.height))

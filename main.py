@@ -35,6 +35,19 @@ leftBoundBall = ball1.x - ball1.radius
 bottomBoundBall = ball1.y + ball1.radius
 topBoundBall = ball1.y - ball1.radius
 
+#brick things
+#Brick vars
+brick = Brick(200, 400, 1)  #(X, Y, health)
+
+brickList = []
+brickX = 0
+brickY = 0
+
+#ADD ENOUGH BRICKS TO FILL UP WIDTH
+while brickX < WIDTH:
+    brickList.append(Brick(brickX, brickY, 1))
+    brickX += 100
+
 
 ###################
 # OTHER FUNCTIONS #
@@ -63,8 +76,6 @@ def crash():
         print("haw yee")
         ball1.speedY = -ball1.speedY                    #flip the direction of the ball
 
-#Brick vars
-brick = Brick(200, 400, 1)  #(width, height, health)
 
 #################
 # MAIN FUNCTION #
@@ -94,8 +105,10 @@ def main():
 
         #render Player
         player.render(WINDOW)
+        #Render ball
         ball1.render(WINDOW)
-        brick.render(WINDOW)
+        #RENDER TEST BRICK
+        # brick.render(WINDOW)
 
         #make ball move
         ball1.x += ball1.speedX
@@ -103,6 +116,11 @@ def main():
 
         updateBounds()      #update all the bounds for the ball
         crash()             #collision detection for the ball
+
+        #RENDER ALL BRICKS IN BRICKLIST
+        for aBrick in brickList:
+            aBrick.render(WINDOW)
+
 
 
         # put code here that should be run every frame in the game             
