@@ -38,7 +38,7 @@ leftBoundBall = ball1.x - ball1.radius
 bottomBoundBall = ball1.y + ball1.radius
 topBoundBall = ball1.y - ball1.radius
 
-#brick things
+#BRICK THINGS
 #Brick vars
 brick = Brick(200, 400, 1)  #(X, Y, health)
 
@@ -138,9 +138,6 @@ def main():
 ####################
 #OTHER FUNCTIONS
 ####################
-def renderBricks():
-    
-    return
 
 
 main()

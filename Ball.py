@@ -12,7 +12,6 @@ class Ball:
     speedX = 3
     speedY = 3
 
-
     moveButtonPressed = False
 
 
