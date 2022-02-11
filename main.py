@@ -10,7 +10,7 @@ from Ball import Ball
 ########################################
 # Define the size of the game window
 WIDTH = 1200
-HEIGHT = 800
+HEIGHT = 700
 # make the game window object
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
 # name the game window
@@ -48,7 +48,9 @@ def updateBounds():
     rightBoundBall = ball1.x + ball1.radius
     leftBoundBall = ball1.x - ball1.radius
     bottomBoundBall = ball1.y + ball1.radius
-    topBoundBall = ball1.y - ball1.radius
+    topBoundBall = ball1.y - ball1.radius*2
+
+
 
 def crash():
     #check conditions
@@ -56,7 +58,7 @@ def crash():
         print("yee haw")
         ball1.speedX = -ball1.speedX                    #flip the direction of the ball
 
-    if topBoundBall >= HEIGHT or bottomBoundBall <= 0:  #if the ball bounces off right or left wall
+    if bottomBoundBall >= HEIGHT or topBoundBall <= 0:  #if the ball bounces off top or bottom wall
         print("haw yee")
         ball1.speedY = -ball1.speedY                    #flip the direction of the ball
 
