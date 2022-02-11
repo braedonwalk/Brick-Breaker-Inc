@@ -59,7 +59,7 @@ def main():
         #render Player
         player.render(WINDOW)
         ball1.render(WINDOW)
-        brick.render(brick.brickSurface)
+        # brick.render(brick.brickSurface)
 
 
 
