@@ -28,7 +28,7 @@ player = Player(playerStartX, playerStartY)
 ball1 = Ball(WIDTH/2,HEIGHT/2)
 
 #Brick vars
-brick = Brick(200, 400, 1)
+brick = Brick(200, 400, 1)  #(width, height, health)
 
 #################
 # MAIN FUNCTION #
@@ -70,7 +70,12 @@ def main():
         pygame.display.update()
 
 
-
+####################
+#OTHER FUNCTIONS
+####################
+def renderBricks():
+    
+    return
 
 
 main()
