@@ -4,6 +4,7 @@
 import pygame
 from Player import Player
 from Ball import Ball
+from Brick import Brick
 
 ########################################
 # Defining global variables and set-up #
@@ -26,6 +27,9 @@ player = Player(playerStartX, playerStartY)
 # Ball vars
 ball1 = Ball(WIDTH/2,HEIGHT/2)
 
+#Brick vars
+brick = Brick(200, 400)
+
 #################
 # MAIN FUNCTION #
 #################
@@ -41,14 +45,11 @@ def main():
 	   # this makes it so this function can run at most FPS times/sec
         clock.tick(FPS)
  
-
         # for all the game events
         for event in pygame.event.get():
            # if the game is exited out of, then stop running the game
             if event.type == pygame.QUIT:
                 running = False
-
-        
 
         # This fills the game window to be the given RGB color
         WINDOW.fill((51,51,51))
@@ -58,6 +59,12 @@ def main():
         #render Player
         player.render(WINDOW)
         ball1.render(WINDOW)
+        brick.render(brick.brickSurface)
+
+
+
+
+
 
         # put code here that should be run every frame in the game             
         pygame.display.update()
