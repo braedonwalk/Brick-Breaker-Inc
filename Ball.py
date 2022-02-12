@@ -14,7 +14,6 @@ class Ball:
 
     moveButtonPressed = False
 
-
     #constructor function
     def __init__(self, _x, _y):
         self.x = _x
@@ -53,3 +52,17 @@ class Ball:
         if collide:
             print("haw haw")
             self.speedY *= -1
+
+    def brickCollision(self, aBrick):
+        collide = pygame.Rect.colliderect(self.hitBox, aBrick.brickRect)
+        if collide:
+            if self.x > aBrick.x and self.y > (aBrick.y + aBrick.height):   #BALL HIT BOTTOM OF BRICK
+                self.speedY *= -1
+            elif self.x > aBrick.x and self.y <= aBrick.y:    #BALL HIT TOP OF BRICK
+                self.speedY *= -1
+            elif self.x > (aBrick.x + aBrick.width) and self.y > aBrick.y:     #BALL HIT RIGHT SIDE OF BRICK
+                self.speedX *= -1
+            elif self.x < aBrick.x and self.y > aBrick.y:     #BALL HIT LEFT SIDE OF BRICK
+                self.speedX *= -1
+            print("breaky break")
+            aBrick.health -= 1    

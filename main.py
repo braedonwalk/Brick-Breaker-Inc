@@ -129,6 +129,7 @@ def main():
         #make ball move
         ball1.move()
         ball1.playerCollision(player)
+        
 
        
         #render Player
@@ -143,11 +144,15 @@ def main():
         updateBounds()      #update all the bounds for the ball
         crash()             #collision detection for the ball
 
-        #RENDER ALL BRICKS IN BRICKLIST
+        #RENDER ALL BRICKS IN BRICKLIST & BREAK BRICKS
+        bricksToKeep = []
         for aBrick in brickList:
             aBrick.render(WINDOW)
-
-
+            ball1.brickCollision(aBrick)
+            if(aBrick.isDead):
+                bricksToKeep.append(aBrick)
+        
+        # brickList = bricksToKeep    #UPDATE BRICKLIST TO REMOVE DEAD BRICK
 
         # put code here that should be run every frame in the game             
         pygame.display.update()
@@ -157,6 +162,8 @@ def main():
 #OTHER FUNCTIONS
 ####################
 
-
+#################
+#THINGS TO RUN#
+#################
 main()
 print(player.x)
