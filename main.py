@@ -44,13 +44,31 @@ brick = Brick(200, 400, 1)  #(X, Y, health)
 
 brickList = []
 brickX = 0
-brickY = 0
+brickY = 50
+brickHealth = 3
 
 #ADD ENOUGH BRICKS TO FILL UP WIDTH
 while brickX < WIDTH:
-    brickList.append(Brick(brickX, brickY, 1))
+    brickList.append(Brick(brickX, brickY, brickHealth))
     brickX += 100
 
+if brickX > WIDTH-100:
+    brickX = 0
+    brickY += 75
+    brickHealth -= 1
+
+while brickX < WIDTH:
+    brickList.append(Brick(brickX, brickY, brickHealth))
+    brickX += 100
+
+if brickX > WIDTH-100:
+    brickX = 0
+    brickY += 75
+    brickHealth -= 1
+
+while brickX < WIDTH:
+    brickList.append(Brick(brickX, brickY, brickHealth))
+    brickX += 100
 
 ###################
 # OTHER FUNCTIONS #

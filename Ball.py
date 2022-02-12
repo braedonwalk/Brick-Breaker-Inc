@@ -23,7 +23,6 @@ class Ball:
 
     #render function
     def render(self, _window):
-
         _x = self.x - self.radius/2
         _y = self.y - self.radius/2
 
