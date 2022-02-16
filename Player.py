@@ -13,6 +13,8 @@ class Player:
 
     #load player asset
     playerBumper = pygame.image.load("Assets/50-Breakout-Tiles.png")
+    playerBumper = pygame.transform.scale(playerBumper, (100,20))
+
 
     #CONSTRUCTOR
     def __init__(self, _x, _y) -> None:
@@ -22,14 +24,15 @@ class Player:
 
 
     def render(self, _window):
+        global playerBumper
         _x = self.x - self.width/2
         _y = self.y - self.height/2
 
-        self.playerRect = pygame.Rect(_x, _y, self.width, self.height)
+        self.playerRect = pygame.Rect(_x, _y, self.width, self.height)  #bumper hitbox
 
         # drawing rectangle
-        # self.playerRect.blit(playerBumper, self.x, self.y)    #attempt at drawing asset at player location
-        pygame.draw.rect(_window, (255,0,0), self.playerRect)
+        self.playerRect.blit(playerBumper, self.x, self.y)    #attempt at drawing asset at player location
+        # pygame.draw.rect(_window, (255,0,0), self.playerRect)
 
     def move(self):
         # handle player movement from key presses
