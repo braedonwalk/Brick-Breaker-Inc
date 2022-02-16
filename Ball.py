@@ -44,11 +44,14 @@ class Ball:
     def playerCollision(self, aPlayer):
         collide = pygame.Rect.colliderect(self.hitBox, aPlayer.playerRect)    
         if collide:
-            if self.y >= aPlayer.y and self.x >= aPlayer.x and self.x <= aPlayer.x + aPlayer.width:
-                print("hit player")
-                self.speedY *= -1
-            if self.y >= aPlayer.y and self.x < aPlayer.x and self.x < aPlayer.x + aPlayer.width:
-                pass
+            # if self.x >= aPlayer.x - aPlayer.width/2 and self.x <= aPlayer.x + aPlayer.width + aPlayer.width/2: #if the ball is between the player bounds, bounce up
+            #     print("hit player")
+            #     self.speedY *= -1
+            # if (self.x < aPlayer.x - aPlayer.width/2 or self.x < aPlayer.x + aPlayer.width/2):  #if the ball is outside player bounds, bounce sideways
+            #     print("hit player side")
+            #     self.speedX *= -1
+            print("hit player")
+            self.speedY *= -1
 
     def wallCollision(self, _window):
         collide = pygame.Rect.colliderect(self.hitBox, _window)    

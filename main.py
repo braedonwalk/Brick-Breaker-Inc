@@ -166,4 +166,3 @@ def main():
 #THINGS TO RUN#
 #################
 main()
-print(player.x)
