@@ -44,8 +44,11 @@ class Ball:
     def playerCollision(self, aPlayer):
         collide = pygame.Rect.colliderect(self.hitBox, aPlayer.playerRect)    
         if collide:
-            print("yee haw")
-            self.speedY *= -1
+            if self.y >= aPlayer.y and self.x >= aPlayer.x and self.x <= aPlayer.x + aPlayer.width:
+                print("hit player")
+                self.speedY *= -1
+            if self.y >= aPlayer.y and self.x < aPlayer.x and self.x < aPlayer.x + aPlayer.width:
+                pass
 
     def wallCollision(self, _window):
         collide = pygame.Rect.colliderect(self.hitBox, _window)    
@@ -57,12 +60,16 @@ class Ball:
         collide = pygame.Rect.colliderect(self.hitBox, aBrick.brickRect)
         if collide:
             if self.x > aBrick.x and self.y > (aBrick.y + aBrick.height):   #BALL HIT BOTTOM OF BRICK
+                print("bottom")
                 self.speedY *= -1
             elif self.x > aBrick.x and self.y <= aBrick.y:    #BALL HIT TOP OF BRICK
+                print("top")
                 self.speedY *= -1
             elif self.x > (aBrick.x + aBrick.width) and self.y > aBrick.y:     #BALL HIT RIGHT SIDE OF BRICK
+                print("right")
                 self.speedX *= -1
             elif self.x < aBrick.x and self.y > aBrick.y:     #BALL HIT LEFT SIDE OF BRICK
+                print("left")
                 self.speedX *= -1
-            print("breaky break")
+            # print("breaky break")
             aBrick.health -= 1    

@@ -26,7 +26,7 @@ player = Player(playerStartX, playerStartY)
 
 # Ball vars
 ballStartX = WIDTH/2
-ballStartY = HEIGHT/2
+ballStartY = playerStartY - 25
 ball1 = Ball(ballStartX, ballStartY)          #define start position of ball
 
 #Brick vars
