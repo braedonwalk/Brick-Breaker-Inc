@@ -24,6 +24,10 @@ playerStartX = WIDTH/2
 playerStartY = HEIGHT-40
 player = Player(playerStartX, playerStartY)
 
+#load player asset
+playerBumper = pygame.image.load("Assets/50-Breakout-Tiles.png")
+playerBumper = pygame.transform.scale(playerBumper, (player.width,player.height))
+
 # Ball vars
 ballStartX = WIDTH/2
 ballStartY = playerStartY - 25
@@ -135,6 +139,7 @@ def main():
        
         #render Player
         player.render(WINDOW)
+        # WINDOW.blit(playerBumper, playerStartX, playerStartY)
         #Render ball
         ball1.render(WINDOW)
         #RENDER TEST BRICK
