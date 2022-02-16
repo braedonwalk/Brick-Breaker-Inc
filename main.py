@@ -1,46 +1,34 @@
-###########
-# Imports #
-###########
+#IMPORTS
 import pygame
 from Player import Player
 from Ball import Ball
 from Brick import Brick
 
-########################################
 # Defining global variables and set-up #
-########################################
-# Define the size of the game window
+
+#Define the size of the game window
 WIDTH = 1200
 HEIGHT = 700
-# make the game window object
+#Make the game window object
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
-# name the game window
+#Name the game window
 pygame.display.set_caption("Brick Breaker Inc")
-# frame rate of game
+#Frame rate of game
 FPS = 60
 
-# player vars
+
+#PLAYER VARIABLES
 playerStartX = WIDTH/2
 playerStartY = HEIGHT-40
 player = Player(playerStartX, playerStartY)
 
-# Ball vars
+#BALL VARIABLES
 ballStartX = WIDTH/2
 ballStartY = playerStartY - 25
-ball1 = Ball(ballStartX, ballStartY)          #define start position of ball
+ball1 = Ball(ballStartX, ballStartY) #define start position of ball
 
-#Brick vars
-brick = Brick(200, 400, 1)  #(width, height, health)
-
-#ball bounds
-rightBoundBall = ball1.x + ball1.radius
-leftBoundBall = ball1.x - ball1.radius
-bottomBoundBall = ball1.y + ball1.radius
-topBoundBall = ball1.y - ball1.radius
-
-#BRICK THINGS
-#Brick vars
-brick = Brick(200, 400, 1)  #(X, Y, health)
+#BRICK VARIABLES
+brick = Brick(200, 400, 1) #(X, Y, health)
 
 brickList = []
 brickX = 0
@@ -73,11 +61,17 @@ while brickX < WIDTH:
 ###################
 # OTHER FUNCTIONS #
 ###################
+
 def updateBounds():
     global rightBoundBall
     global leftBoundBall
     global bottomBoundBall
     global topBoundBall
+
+    global rightBoundPlayer
+    global leftBoundPlayer
+    global bottomBoundPlayer
+    global topBoundPlayer
 
     #ball bounds
     rightBoundBall = ball1.x
@@ -85,22 +79,33 @@ def updateBounds():
     bottomBoundBall = ball1.y
     topBoundBall = ball1.y - 10
 
+    #player bounds
+    rightBoundPlayer = player.x + player.width/2
+    leftBoundPlayer = player.x - player.width/2
+    topBoundPlayer = player.y + player.height/2
+    bottomBoundPlayer = player.y - player.height/2
 
-def crash():
+def ballWindowBound():
     #check conditions
-    if rightBoundBall >= WIDTH or leftBoundBall <= 0:   #if the ball bounces off right or left wall
+    if rightBoundBall >= WIDTH or leftBoundBall <= 0: #if the ball bounces off right or left wall
         #print("yee haw")
-        ball1.speedX = -ball1.speedX                    #flip the direction of the ball
+        ball1.speedX = -ball1.speedX #flip the direction of the ball
 
-    if bottomBoundBall >= HEIGHT or topBoundBall <= 0:  #if the ball bounces off top or bottom wall
+    if bottomBoundBall >= HEIGHT or topBoundBall <= 0: #if the ball bounces off top or bottom wall
         #print("haw yee")
-        ball1.speedY = -ball1.speedY                    #flip the direction of the ball
+        ball1.speedY = -ball1.speedY #flip the direction of the ball
+
+def playerWindowBound():
+    #check conditions
+    if rightBoundPlayer >= WIDTH:
+        player.x = WIDTH - player.width/2
+
+    if leftBoundPlayer <= 0:
+        player.x = 0 + player.width/2
 
 
-#################
 # MAIN FUNCTION #
-#################
-# main game function
+
 def main():
     global brickList
     # this gets a list of booleans showing which keys are currently pressed
@@ -124,26 +129,32 @@ def main():
         # This fills the game window to be the given RGB color
         WINDOW.fill((51,51,51))
         
-        
+        #MOVEMENT
+        #make player move
         player.move()
+
 
         #make ball move
         ball1.move()
         ball1.playerCollision(player)
+       
         
+
+        #bricks
+        #brick.ballCollision(ball1.hitBox)
 
        
-        #render Player
+       #RENDER FUNCTIONS
         player.render(WINDOW)
-        #Render ball
         ball1.render(WINDOW)
-        #RENDER TEST BRICK
-        # brick.render(WINDOW)
-
         
+        for aBrick in brickList:
+            aBrick.render(WINDOW)
 
-        updateBounds()      #update all the bounds for the ball
-        crash()             #collision detection for the ball
+
+        updateBounds() #Update all the bounds for the ball
+        ballWindowBound() #Collision with wall detection for the ball
+        playerWindowBound() #Collision with wall detection for the player
 
         #RENDER ALL BRICKS IN BRICKLIST & BREAK BRICKS
         bricksToKeep = []
@@ -153,17 +164,14 @@ def main():
             if(aBrick.isDead == False):
                 bricksToKeep.append(aBrick)
         
-        brickList = bricksToKeep    #UPDATE BRICKLIST TO REMOVE DEAD BRICK
-
-        # put code here that should be run every frame in the game             
+        brickList = bricksToKeep #UPDATE BRICKLIST TO REMOVE DEAD BRICK
+        
+        #Put code here that should be run every frame in the game             
         pygame.display.update()
+        
 
+# THINGS TO RUN #
 
-####################
-#OTHER FUNCTIONS
-####################
-
-#################
-#THINGS TO RUN#
-#################
 main()
+main()
+print(player.x)

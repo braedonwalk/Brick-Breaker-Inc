@@ -1,9 +1,10 @@
+#IMPORTS
 import pygame
 
+#CREATING BRICK CLASS
 class Brick:
-    ############
-    # class vars w/ constant start values
-    ###########
+
+    #CLASS VARIABLES WITH CONSTANT VALUES
     width = 100
     height = 50
     # brickSurface = pygame.Surface(50,100)
@@ -13,7 +14,7 @@ class Brick:
     # brickSurface = pygame.image.load(blueBrick)
     # print(blueBrick)
 
-    #constructor function
+    #CONSTRUCTOR
     def __init__(self, _x, _y, _health):
         self.x = _x
         self.y = _y
@@ -23,7 +24,7 @@ class Brick:
 
         # brickSurface = pygame.surface(self.width, self.height)
 
-    #render function
+    #RENDER FUNCTION
     def render(self, _window):
         _x = self.x
         _y = self.y
@@ -37,3 +38,12 @@ class Brick:
         if self.health <= 0:
             self.isDead = True
             print("is dead")
+
+        #drawing rectangle
+        pygame.draw.rect(_window, (255,0,0), self.brickRect)
+    
+    #def ballCollision(self, _ball):
+        #collide = pygame.Rect.colliderect(self.brickRect, _ball.hitBox)    
+        #if collide:
+            #print("yee haw")
+            #self.speedY *= -1
