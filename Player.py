@@ -11,6 +11,9 @@ class Player:
     speed = 5
     isDead = False
 
+    #load player asset
+    playerBumper = pygame.image.load("Assets/50-Breakout-Tiles.png")
+
     #CONSTRUCTOR
     def __init__(self, _x, _y) -> None:
         self.x = _x
@@ -25,6 +28,7 @@ class Player:
         self.playerRect = pygame.Rect(_x, _y, self.width, self.height)
 
         # drawing rectangle
+        # self.playerRect.blit(playerBumper, self.x, self.y)    #attempt at drawing asset at player location
         pygame.draw.rect(_window, (255,0,0), self.playerRect)
 
     def move(self):

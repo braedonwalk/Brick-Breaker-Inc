@@ -102,6 +102,7 @@ def crash():
 #################
 # main game function
 def main():
+    global brickList
     # this gets a list of booleans showing which keys are currently pressed
     keysPressed = pygame.key.get_pressed()
     # make a clock object that will be used
@@ -149,10 +150,10 @@ def main():
         for aBrick in brickList:
             aBrick.render(WINDOW)
             ball1.brickCollision(aBrick)
-            if(aBrick.isDead):
+            if(aBrick.isDead == False):
                 bricksToKeep.append(aBrick)
         
-        # brickList = bricksToKeep    #UPDATE BRICKLIST TO REMOVE DEAD BRICK
+        brickList = bricksToKeep    #UPDATE BRICKLIST TO REMOVE DEAD BRICK
 
         # put code here that should be run every frame in the game             
         pygame.display.update()

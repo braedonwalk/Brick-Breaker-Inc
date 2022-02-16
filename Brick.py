@@ -34,5 +34,6 @@ class Brick:
         pygame.draw.rect(_window, (255,0,0), pygame.Rect(self.brickRect))
         # self.brickRect.blit(blueBrick)
         
-        if self.health < 0:
+        if self.health <= 0:
             self.isDead = True
+            print("is dead")

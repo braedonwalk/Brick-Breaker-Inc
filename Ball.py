@@ -75,4 +75,5 @@ class Ball:
                 print("left")
                 self.speedX *= -1
             # print("breaky break")
-            aBrick.health -= 1    
+            aBrick.health -= 1   
+            print("brick health", aBrick.health) 
