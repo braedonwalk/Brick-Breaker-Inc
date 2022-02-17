@@ -37,7 +37,7 @@ class Brick:
         
         if self.health <= 0:
             self.isDead = True
-            print("is dead")
+            # print("is dead")
 
         #drawing rectangle
         pygame.draw.rect(_window, (255,0,0), self.brickRect)

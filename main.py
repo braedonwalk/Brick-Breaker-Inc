@@ -26,6 +26,7 @@ player = Player(playerStartX, playerStartY)
 ballStartX = WIDTH/2
 ballStartY = playerStartY - 25
 ball1 = Ball(ballStartX, ballStartY) #define start position of ball
+gameOver = False
 
 #BRICK VARIABLES
 brick = Brick(200, 400, 1) #(X, Y, health)
@@ -34,6 +35,9 @@ brickList = []
 brickX = 0
 brickY = 50
 brickHealth = 3
+
+#SCORE
+score = 0
 
 #ADD ENOUGH BRICKS TO FILL UP WIDTH
 while brickX < WIDTH:
@@ -91,9 +95,14 @@ def ballWindowBound():
         #print("yee haw")
         ball1.speedX = -ball1.speedX #flip the direction of the ball
 
-    if bottomBoundBall >= HEIGHT or topBoundBall <= 0: #if the ball bounces off top or bottom wall
+    if topBoundBall <= 0: #if the ball bounces off top wall
         #print("haw yee")
         ball1.speedY = -ball1.speedY #flip the direction of the ball
+
+    if bottomBoundBall >= HEIGHT:
+        global gameOver
+        print("game over")
+        gameOver = True
 
 def playerWindowBound():
     #check conditions
@@ -108,6 +117,7 @@ def playerWindowBound():
 
 def main():
     global brickList
+    global score
     # this gets a list of booleans showing which keys are currently pressed
     keysPressed = pygame.key.get_pressed()
     # make a clock object that will be used
@@ -137,7 +147,19 @@ def main():
         #make ball move
         ball1.move()
         ball1.playerCollision(player)
-       
+
+        #NOT WORKING~~~~~~~~~~~~~~~
+        # if gameOver:            #IF BALL GOES BELOW SCREEN, RESET BALL AND PLAYER
+        #     global ballStartX
+        #     global ballStartY
+        #     global playerStartX
+        #     global ball1
+        #     ballStartX = WIDTH/2
+        #     ballStartY = playerStartY - 25
+        #     playerStartX = WIDTH/2
+        #     ball1 = Ball(ballStartX, ballStartY)
+        #     gameOver = False
+
         
 
         #bricks
@@ -163,6 +185,9 @@ def main():
             ball1.brickCollision(aBrick)
             if(aBrick.isDead == False):
                 bricksToKeep.append(aBrick)
+            if(aBrick.isDead):              #IF A BRICK BREAKS
+                score = score + 100         #INCREASE SCORE
+                print(score)
         
         brickList = bricksToKeep #UPDATE BRICKLIST TO REMOVE DEAD BRICK
         
@@ -173,5 +198,3 @@ def main():
 # THINGS TO RUN #
 
 main()
-main()
-print(player.x)
