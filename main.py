@@ -38,6 +38,10 @@ brickHealth = 3
 
 #SCORE
 score = 0
+scoreColor = (0,0,255)
+pygame.font.init()
+scoreFont = pygame.font.SysFont("rage", 40)
+scoreObject = scoreFont.render(score, True, scoreColor)
 
 #ADD ENOUGH BRICKS TO FILL UP WIDTH
 while brickX < WIDTH:
@@ -118,6 +122,7 @@ def playerWindowBound():
 def main():
     global brickList
     global score
+
     # this gets a list of booleans showing which keys are currently pressed
     keysPressed = pygame.key.get_pressed()
     # make a clock object that will be used
@@ -138,6 +143,9 @@ def main():
 
         # This fills the game window to be the given RGB color
         WINDOW.fill((51,51,51))
+
+        #display score
+        WINDOW.blit(scoreFont, WIDTH/2, HEIGHT/2)
         
         #MOVEMENT
         #make player move
@@ -198,3 +206,4 @@ def main():
 # THINGS TO RUN #
 
 main()
+print(pygame.font.get_fonts())
