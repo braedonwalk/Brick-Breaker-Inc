@@ -65,7 +65,7 @@ scoreColor = (255,255,255)
 pygame.font.init()
 scoreFont = pygame.font.SysFont("rage", 40)
 scoreObject = scoreFont.render(str(score), True, scoreColor)
-scoreString = scoreFont.render("String: ", True, scoreColor)
+scoreString = scoreFont.render("Score: ", True, scoreColor)
 
 ###################
 # OTHER FUNCTIONS #
@@ -161,36 +161,16 @@ def main():
 
         #display score
         WINDOW.blit(scoreString, (0, HEIGHT-40))
-        WINDOW.blit(scoreObject, (110, HEIGHT-40))
+        WINDOW.blit(scoreObject, (90, HEIGHT-40))
         
         #MOVEMENT
         #make player move
         player.move()
         
-
-
         #make ball move
         ball1.move()
         ball1.playerCollision(player)
-
-        #NOT WORKING~~~~~~~~~~~~~~~
-        # if gameOver:            #IF BALL GOES BELOW SCREEN, RESET BALL AND PLAYER
-        #     global ballStartX
-        #     global ballStartY
-        #     global playerStartX
-        #     global ball1
-        #     ballStartX = WIDTH/2
-        #     ballStartY = playerStartY - 25
-        #     playerStartX = WIDTH/2
-        #     ball1 = Ball(ballStartX, ballStartY)
-        #     gameOver = False
-
-        
-
-        #bricks
-        #brick.ballCollision(ball1.hitBox)
-
-       
+   
        #RENDER FUNCTIONS
         player.render(WINDOW)
         ball1.render(WINDOW)
@@ -217,15 +197,16 @@ def main():
         
         brickList = bricksToKeep #UPDATE BRICKLIST TO REMOVE DEAD BRICK
         
+        #NOT WORKING~~~~~~~~~~~~~~~
+        if gameOver:            #IF BALL GOES BELOW SCREEN
+            pass
+            #GAME OVER SCREEN
+
         #Put code here that should be run every frame in the game             
         pygame.display.update()
         
 
 # THINGS TO RUN #
 
-<<<<<<< Updated upstream
 main()
 # print(pygame.font.get_fonts())
-=======
-main()
->>>>>>> Stashed changes
