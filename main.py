@@ -38,10 +38,11 @@ brickHealth = 3
 
 #SCORE
 score = 0
-scoreColor = (0,0,255)
+scoreColor = (255,255,255)
 pygame.font.init()
 scoreFont = pygame.font.SysFont("rage", 40)
-# scoreObject = scoreFont.render(score, True, scoreColor)
+scoreObject = scoreFont.render(str(score), True, scoreColor)
+scoreString = scoreFont.render("String: ", True, scoreColor)
 
 #ADD ENOUGH BRICKS TO FILL UP WIDTH
 while brickX < WIDTH:
@@ -145,7 +146,8 @@ def main():
         WINDOW.fill((51,51,51))
 
         #display score
-        # WINDOW.blit(scoreFont, WIDTH/2, HEIGHT/2)
+        WINDOW.blit(scoreString, (0, HEIGHT-40))
+        WINDOW.blit(scoreObject, (110, HEIGHT-40))
         
         #MOVEMENT
         #make player move
