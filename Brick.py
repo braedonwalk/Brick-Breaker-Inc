@@ -10,7 +10,6 @@ class Brick:
     # brickSurface = pygame.Surface(50,100)
     isDead = False
 
-    # blueBrick = pygame.image.load('Assets/01-Breakout-Tiles.png')
     # brickSurface = pygame.image.load(blueBrick)
     # print(blueBrick)
 
@@ -20,9 +19,8 @@ class Brick:
         self.y = _y
         self.health = _health
 
-        self.image = pygame.Surface([self.width,self.height])
-        self.rect = self.image.get_rect()
         self.brickRect = pygame.Rect(_x, _y, self.width, self.height)
+        self.blueBrick = pygame.image.load('Assets/01-Breakout-Tiles.png')        
 
         # brickSurface = pygame.surface(self.width, self.height)
 
@@ -41,6 +39,8 @@ class Brick:
             # print("is dead")
 
         #drawing rectangle
+        # self.blueBrick = pygame.transform.scale(self.blueBrick, (self.width, self.height), _window)
+        # _window.blit(self.blueBrick, 0,0)
         pygame.draw.rect(_window, (255,0,0), self.brickRect)
     
     #def ballCollision(self, _ball):

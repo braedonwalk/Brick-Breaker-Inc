@@ -23,7 +23,7 @@ player = Player(playerStartX, playerStartY)
 
 #BALL VARIABLES
 ballStartX = WIDTH/2
-ballStartY = playerStartY - 16
+ballStartY = playerStartY - 17
 ball1 = Ball(ballStartX, ballStartY) #define start position of ball
 gameOver = False
 
