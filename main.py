@@ -19,7 +19,7 @@ FPS = 60
 
 #PLAYER VARIABLES
 playerStartX = WIDTH/2
-playerStartY = HEIGHT-40
+playerStartY = HEIGHT-10
 player = Player(playerStartX, playerStartY)
 
 #BALL VARIABLES
@@ -70,6 +70,8 @@ scoreString = scoreFont.render("String: ", True, scoreColor)
 ###################
 # OTHER FUNCTIONS #
 ###################
+def gameOver():
+    pass
 
 def updateBounds():
     global rightBoundBall
@@ -94,6 +96,12 @@ def updateBounds():
     topBoundPlayer = player.y + player.height/2
     bottomBoundPlayer = player.y - player.height/2
 
+    #IF BALL HITS PLAYER BOUNCE AWAY
+    # if bottomBoundBall >= bottomBoundPlayer and rightBoundBall <= rightBoundPlayer and leftBoundBall >= leftBoundPlayer:
+    #     ball1.speedY = -ball1.speedY
+
+   
+
 def ballWindowBound():
     #check conditions
     if rightBoundBall >= WIDTH or leftBoundBall <= 0: #if the ball bounces off right or left wall
@@ -104,10 +112,15 @@ def ballWindowBound():
         #print("haw yee")
         ball1.speedY = -ball1.speedY #flip the direction of the ball
 
-    if bottomBoundBall >= HEIGHT:
-        global gameOver
-        print("game over")
-        gameOver = True
+    if bottomBoundBall > topBoundPlayer:
+        # global gameOver
+        # print("game over")
+        # gameOver = True
+        ball1.speedX = 0
+        ball1.speedY = 0
+        #ball1.y = HEIGHT - ball1.radius
+        gameOver
+        
 
 def playerWindowBound():
     #check conditions
@@ -153,6 +166,7 @@ def main():
         #MOVEMENT
         #make player move
         player.move()
+        
 
 
         #make ball move
@@ -209,5 +223,9 @@ def main():
 
 # THINGS TO RUN #
 
+<<<<<<< Updated upstream
 main()
 # print(pygame.font.get_fonts())
+=======
+main()
+>>>>>>> Stashed changes
