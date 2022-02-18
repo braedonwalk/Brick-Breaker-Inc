@@ -36,14 +36,6 @@ brickX = 0
 brickY = 50
 brickHealth = 3
 
-#SCORE
-score = 0
-scoreColor = (255,255,255)
-pygame.font.init()
-scoreFont = pygame.font.SysFont("rage", 40)
-scoreObject = scoreFont.render(str(score), True, scoreColor)
-scoreString = scoreFont.render("String: ", True, scoreColor)
-
 #ADD ENOUGH BRICKS TO FILL UP WIDTH
 while brickX < WIDTH:
     brickList.append(Brick(brickX, brickY, brickHealth))
@@ -66,6 +58,14 @@ if brickX > WIDTH-100:
 while brickX < WIDTH:
     brickList.append(Brick(brickX, brickY, brickHealth))
     brickX += 100
+
+#SCORE
+score = 0
+scoreColor = (255,255,255)
+pygame.font.init()
+scoreFont = pygame.font.SysFont("rage", 40)
+scoreObject = scoreFont.render(str(score), True, scoreColor)
+scoreString = scoreFont.render("String: ", True, scoreColor)
 
 ###################
 # OTHER FUNCTIONS #
@@ -123,6 +123,7 @@ def playerWindowBound():
 def main():
     global brickList
     global score
+    global scoreObject
 
     # this gets a list of booleans showing which keys are currently pressed
     keysPressed = pygame.key.get_pressed()
@@ -197,6 +198,7 @@ def main():
                 bricksToKeep.append(aBrick)
             if(aBrick.isDead):              #IF A BRICK BREAKS
                 score = score + 100         #INCREASE SCORE
+                scoreObject = scoreFont.render(str(score), True, scoreColor)
                 print(score)
         
         brickList = bricksToKeep #UPDATE BRICKLIST TO REMOVE DEAD BRICK
@@ -208,4 +210,4 @@ def main():
 # THINGS TO RUN #
 
 main()
-print(pygame.font.get_fonts())
+# print(pygame.font.get_fonts())
