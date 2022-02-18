@@ -1,4 +1,5 @@
 #IMPORTS
+import random
 import pygame
 
 #CREATING BRICK CLASS

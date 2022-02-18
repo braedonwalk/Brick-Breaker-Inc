@@ -9,6 +9,8 @@ class Player:
     height = 20
     speed = 5
     isDead = False
+    movingRight = False
+    movingLeft = False
 
     #CONSTRUCTOR
     def __init__(self, _x, _y) -> None:
@@ -25,7 +27,7 @@ class Player:
 
         #drawing rectangle
         # self.playerRect.blit(playerBumper, self.x, self.y)    #attempt at drawing asset at player location
-        pygame.draw.rect(_window, (255,0,255), self.playerRect)
+        pygame.draw.rect(_window, (255,0,0), self.playerRect)
 
     #MOVE FUNCTION
     def move(self):

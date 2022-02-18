@@ -7,7 +7,7 @@ from Brick import Brick
 # Defining global variables and set-up #
 
 #Define the size of the game window
-WIDTH = 1200
+WIDTH = 1000
 HEIGHT = 700
 #Make the game window object
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -42,7 +42,7 @@ while brickX < WIDTH:
 
 if brickX > WIDTH-100:
     brickX = 0
-    brickY += 75
+    brickY += 50
     brickHealth -= 1
 
 while brickX < WIDTH:
@@ -51,7 +51,7 @@ while brickX < WIDTH:
 
 if brickX > WIDTH-100:
     brickX = 0
-    brickY += 75
+    brickY += 50
     brickHealth -= 1
 
 while brickX < WIDTH:
@@ -74,81 +74,102 @@ gameOverText = scoreFont.render("Game Over", True, scoreColor) #(text, True, col
 ###################
 # OTHER FUNCTIONS #
 ###################
-def gameOver():
-    pass
 
-def updateBounds():
-    global rightBoundBall
-    global leftBoundBall
-    global bottomBoundBall
-    global topBoundBall
-
-    global rightBoundPlayer
-    global leftBoundPlayer
-    global bottomBoundPlayer
-    global topBoundPlayer
-
-    #ball bounds
-    rightBoundBall = ball1.x
-    leftBoundBall = ball1.x - 10
-    bottomBoundBall = ball1.y
-    topBoundBall = ball1.y - 10
-
-    #player bounds
-    rightBoundPlayer = player.x + player.width/2
-    leftBoundPlayer = player.x - player.width/2
-    topBoundPlayer = player.y + player.height/2
-    bottomBoundPlayer = player.y - player.height/2
-
-    #IF BALL HITS PLAYER BOUNCE AWAY
-    # if bottomBoundBall >= bottomBoundPlayer and rightBoundBall <= rightBoundPlayer and leftBoundBall >= leftBoundPlayer:
-    #     ball1.speedY = -ball1.speedY
-
-   
-
-def ballWindowBound():
-    #check conditions
-    if rightBoundBall >= WIDTH or leftBoundBall <= 0: #if the ball bounces off right or left wall
-        #print("yee haw")
-        ball1.speedX = -ball1.speedX #flip the direction of the ball
-
-    if topBoundBall <= 0: #if the ball bounces off top wall
-        #print("haw yee")
-        ball1.speedY = -ball1.speedY #flip the direction of the ball
-
-    if bottomBoundBall > topBoundPlayer:
-        # global gameOver
-        # print("game over")
-        # gameOver = True
-        ball1.speedX = 0
-        ball1.speedY = 0
-        #ball1.y = HEIGHT - ball1.radius
-        gameOver
-        
-
-def playerWindowBound():
-    #check conditions
-    if rightBoundPlayer >= WIDTH:
-        player.x = WIDTH - player.width/2
-
-    if leftBoundPlayer <= 0:
-        player.x = 0 + player.width/2
 
 
 # MAIN FUNCTION #
 
 def main():
-    global brickList
-    global score
-    global scoreObject
-
-    # this gets a list of booleans showing which keys are currently pressed
-    keysPressed = pygame.key.get_pressed()
     # make a clock object that will be used
     # to make the game run at a consistent framerate
     clock = pygame.time.Clock()
     # make a boolean that represents whether the game should continue to run or not
     running = True
+    # while the game is running
+    while running:
+	    # this makes it so this function can run at most FPS times/sec
+        clock.tick(FPS)
+ 
+        # for all the game events
+        for event in pygame.event.get():
+           # if the game is exited out of, then stop running the game
+            if event.type == pygame.QUIT:
+                running = False
+
+        # This fills the game window to be the given RGB color
+        WINDOW.fill((51,51,51))
+       
+        #handle player movement from key presses
+        keysPressed = pygame.key.get_pressed()
+        
+        if keysPressed[pygame.K_w] == True: #if the 'a' key is pressed
+            initalize()
+
+
+def initalize():
+    global brickList
+    global score
+    global scoreObject
+
+    def updateBounds():
+        global rightBoundBall
+        global leftBoundBall
+        global bottomBoundBall
+        global topBoundBall
+
+        global rightBoundPlayer
+        global leftBoundPlayer
+        global bottomBoundPlayer
+        global topBoundPlayer
+
+        #ball bounds
+        rightBoundBall = ball1.x
+        leftBoundBall = ball1.x - 10
+        bottomBoundBall = ball1.y
+        topBoundBall = ball1.y - 10
+
+    #player bounds
+        rightBoundPlayer = player.x + player.width/2
+        leftBoundPlayer = player.x - player.width/2
+        topBoundPlayer = player.y + player.height/2
+        bottomBoundPlayer = player.y - player.height/2
+   
+
+    def ballWindowBound():
+    #check conditions
+        if rightBoundBall >= WIDTH or leftBoundBall <= 0: #if the ball bounces off right or left wall
+        #print("yee haw")
+            ball1.speedX = -ball1.speedX #flip the direction of the ball
+
+        if topBoundBall <= 0: #if the ball bounces off top wall
+        #print("haw yee")
+            ball1.speedY = -ball1.speedY #flip the direction of the ball
+
+        if bottomBoundBall > topBoundPlayer:
+        # global gameOver
+        # print("game over")
+        # gameOver = True
+            ball1.speedX = 0
+            ball1.speedY = 0
+        #ball1.y = HEIGHT - ball1.radius
+        #gameOver = True
+            WINDOW.fill((255,0,0))
+
+    def playerWindowBound():
+            #check conditions
+        if rightBoundPlayer >= WIDTH:
+            player.x = WIDTH - player.width/2
+
+        if leftBoundPlayer <= 0:
+            player.x = 0 + player.width/2
+
+
+    # make a clock object that will be used
+    # to make the game run at a consistent framerate
+    clock = pygame.time.Clock()
+    # make a boolean that represents whether the game should continue to run or not
+    running = True
+    
     # while the game is running
     while running:
 	    # this makes it so this function can run at most FPS times/sec
@@ -201,12 +222,8 @@ def main():
                 print(score)
         
         brickList = bricksToKeep #UPDATE BRICKLIST TO REMOVE DEAD BRICK
-        
-        #NOT WORKING~~~~~~~~~~~~~~~
-        if gameOver:            #IF BALL GOES BELOW SCREEN
-            pass
-            #GAME OVER SCREEN
 
+        
         #Put code here that should be run every frame in the game             
         pygame.display.update()
         
@@ -215,3 +232,4 @@ def main():
 
 main()
 # print(pygame.font.get_fonts())
+
