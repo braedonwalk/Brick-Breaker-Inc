@@ -20,6 +20,8 @@ class Brick:
         self.y = _y
         self.health = _health
 
+        self.image = pygame.Surface([self.width,self.height])
+        self.rect = self.image.get_rect()
         self.brickRect = pygame.Rect(_x, _y, self.width, self.height)
 
         # brickSurface = pygame.surface(self.width, self.height)
@@ -32,7 +34,6 @@ class Brick:
         self.brickRect = pygame.Rect(_x, _y, self.width, self.height)
         
         #drawing a rectangle
-        pygame.draw.rect(_window, (255,0,0), pygame.Rect(self.brickRect))
         # self.brickRect.blit(blueBrick)
         
         if self.health <= 0:

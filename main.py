@@ -16,7 +16,6 @@ pygame.display.set_caption("Brick Breaker Inc")
 #Frame rate of game
 FPS = 60
 
-
 #PLAYER VARIABLES
 playerStartX = WIDTH/2
 playerStartY = HEIGHT-10
@@ -24,7 +23,7 @@ player = Player(playerStartX, playerStartY)
 
 #BALL VARIABLES
 ballStartX = WIDTH/2
-ballStartY = playerStartY - 25
+ballStartY = playerStartY - 16
 ball1 = Ball(ballStartX, ballStartY) #define start position of ball
 gameOver = False
 
@@ -66,6 +65,11 @@ pygame.font.init()
 scoreFont = pygame.font.SysFont("rage", 40)
 scoreObject = scoreFont.render(str(score), True, scoreColor)
 scoreString = scoreFont.render("Score: ", True, scoreColor)
+
+#GAME OVER FONT
+gameOverFont = pygame.font.SysFont("rage", 100)
+gameOverText = scoreFont.render("Game Over", True, scoreColor) #(text, True, color of text) 
+
 
 ###################
 # OTHER FUNCTIONS #
@@ -147,7 +151,7 @@ def main():
     running = True
     # while the game is running
     while running:
-	   # this makes it so this function can run at most FPS times/sec
+	    # this makes it so this function can run at most FPS times/sec
         clock.tick(FPS)
  
         # for all the game events
@@ -171,12 +175,13 @@ def main():
         ball1.move()
         ball1.playerCollision(player)
    
-       #RENDER FUNCTIONS
+        #RENDER FUNCTIONS
         player.render(WINDOW)
         ball1.render(WINDOW)
         
         for aBrick in brickList:
             aBrick.render(WINDOW)
+
 
 
         updateBounds() #Update all the bounds for the ball
